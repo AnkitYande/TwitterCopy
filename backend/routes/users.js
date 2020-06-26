@@ -27,8 +27,16 @@ router.route('/:id').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/authorize/:username').get((req, res) => {
+router.route('/get/:username').get((req, res) => {
   User.findOne({username: req.params.username})
+    .then(user => res.json(user))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/like').put((req, res) => {
+  const username = req.body.username;
+  const tweetID = req.body.tweetID;
+  User.findOneAndUpdate({username:username}, {$push:{likedTweets:tweetID}})
     .then(user => res.json(user))
     .catch(err => res.status(400).json('Error: ' + err));
   

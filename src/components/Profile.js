@@ -1,10 +1,39 @@
 import React, { Component } from 'react'
+import TweetList from './TweetList';
+import CreateTweet from './CreateTweet';
+import axios from 'axios';
 
 export class Profile extends Component {
+    state = {
+        tweets:[]
+    };
+
+    getTweets = () => {
+        axios.get('http://192.168.1.235:5000/tweets/get/'+this.props.user)
+            .then(response => {
+                this.setState({tweets: response.data })
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    };
+
+    componentDidMount() {
+        this.getTweets();
+    }
+
+    refresh = () =>{
+        this.getTweets();
+        this.getTweets();
+    }
+
     render() {
         return (
-            <div>
-                Profile Page
+            <div className="container">
+                <CreateTweet user = {this.props.user} updateTweets = {this.refresh}/> 
+                <br></br>
+                <TweetList tweets = {this.state.tweets}/>
+                <br></br>
             </div>
         )
     }

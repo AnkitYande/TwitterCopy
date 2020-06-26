@@ -34,7 +34,7 @@ export class MainPage extends Component {
             <div className="container">
                 <CreateTweet user = {this.props.user} updateTweets = {this.refresh}/> 
                 <br></br>
-                <TweetList tweets = {this.state.tweets}/>
+                <TweetList tweets = {this.state.tweets} user = {this.props.user}/>
                 <br></br>
             </div>
         )

@@ -31,7 +31,7 @@ export class Login extends Component {
 
     getUser = () => {
         //console.log('http://192.168.1.235:5000/users/authorize/'+this.state.username);
-        axios.get('http://192.168.1.235:5000/users/authorize/'+this.state.username)
+        axios.get('http://192.168.1.235:5000/users/get/'+this.state.username)
           .then(response => {
             this.setState({user: response.data },this.verifyUser)
             console.log(this.state.user)

@@ -33,6 +33,13 @@ router.route('/:id').delete((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/get/:username').get((req, res) => {
+  Tweet.find({username: req.params.username})
+    .then(user => res.json(user))
+    .catch(err => res.status(400).json('Error: ' + err));
+  
+});
+
 // router.route('/update/:id').post((req, res) => {
 //   Exercise.findById(req.params.id)
 //     .then(exercise => {
