@@ -15,6 +15,7 @@ export class Login extends Component {
 
     onSubmit = (e) =>{
         e.preventDefault();
+        //axios.get('http://192.168.1.235:5000/users/login/'+this.state.username)
         this.getUser();
     }
 
@@ -47,7 +48,7 @@ export class Login extends Component {
             return <Redirect to={'/'} />
         }
         return ( 
-            <div>
+            <div className = 'App-Body'>
             <form onSubmit = {this.onSubmit}>
                 <input 
                     type = "text" 
@@ -58,8 +59,9 @@ export class Login extends Component {
                     className = "textfield"
 
                 />
+                <br></br>
                 <input 
-                    type = "text" 
+                    type = "password" 
                     name = "Password"
                     placeholder = "Password"
                     value = {this.state.password}

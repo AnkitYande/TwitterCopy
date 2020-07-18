@@ -29,23 +29,24 @@ export class CreateTweet extends Component {
 
     render() {
         return (
-            <form onSubmit = {this.onSubmit}>
-                <input 
+            <form id="tweet-box" className="tweet-box" onSubmit = {this.onSubmit}>
+                <textarea 
                     type = "textarea" 
                     name = "tweet"
+                    autoComplete="off"
                     placeholder = "What's Happening?"
                     value = {this.state.tweet}
                     onChange = {this.onChange}
-                    className = "textfield"
-
-                />
+                    form="tweet-box"
+                    className = "textArea"
+                >
+                </textarea>
                 <input 
                     type = "submit" 
                     value = "Tweet" 
                     className = "btn"
                 />
             </form>
-            
         )
     }
 }

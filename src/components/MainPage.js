@@ -31,11 +31,11 @@ export class MainPage extends Component {
 
     render() {
         return (
-            <div className="container">
-                <CreateTweet user = {this.props.user} updateTweets = {this.refresh}/> 
-                <br></br>
-                <TweetList tweets = {this.state.tweets} user = {this.props.user}/>
-                <br></br>
+            <div className="App-Body">
+                <div className="Tweet-List">
+                    <CreateTweet user = {this.props.user} updateTweets = {this.refresh}/> 
+                    <TweetList tweets = {this.state.tweets} user = {this.props.user}/>
+                </div>
             </div>
         )
     }

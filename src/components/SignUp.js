@@ -57,7 +57,7 @@ export class SignUp extends Component {
             return <Redirect to={'/'} />
         }
         return (  
-            <div>
+            <div className = 'App-Body'>
             <form onSubmit = {this.onSubmit}>
                 <input 
                     type = "text" 
@@ -68,8 +68,9 @@ export class SignUp extends Component {
                     className = "textfield"
 
                 />
+                <br></br>
                 <input 
-                    type = "text" 
+                    type = "password" 
                     name = "Password"
                     placeholder = "Password"
                     value = {this.state.password}

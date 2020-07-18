@@ -41,14 +41,12 @@ export class Liked extends Component {
         this.getTweets();
     }
 
-    //                <TweetList tweets = {this.state.tweets}/>
-
     render() {
         return (
-            <div className="container">
-                <br></br>
+            <div className="App-Body">
+                <div className="Tweet-List">
                 <TweetList tweets = {this.state.tweets}/>
-                <br></br>
+                </div>
             </div>
         )
     }

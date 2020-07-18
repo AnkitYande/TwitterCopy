@@ -29,11 +29,11 @@ export class Profile extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="App-Body">
+                <div className="Tweet-List">
                 <CreateTweet user = {this.props.user} updateTweets = {this.refresh}/> 
-                <br></br>
                 <TweetList tweets = {this.state.tweets}/>
-                <br></br>
+                </div>
             </div>
         )
     }
