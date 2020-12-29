@@ -1,3 +1,12 @@
+## MERN Stack Twitter Copy
+
+To run type the following in the project directory: 
+### `npm start`
+and the following in the backend directory:
+### `nodemon server`
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
