@@ -87,15 +87,16 @@
 .textfield {
     font-family: inherit;
     background-color: white;
-    width: 30%;
-    height: 10%;
-    font-size: calc(10px);
+    width: 40%;
+    height: 20%;
+    font-size: calc(15px);
     color: black;
     border-width: 2px;
     border: none;
     outline: none;
     margin: 20px;
     padding: 10px;
+    border-radius: 50px;
 }
 
 .sidenav {

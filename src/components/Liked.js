@@ -43,6 +43,7 @@ export class Liked extends Component {
 
     render() {
         return (
+            this.state.tweets.length === 0 ? <div className="App-Body"> You haven’t liked any Tweets yet</div> :
             <div className="App-Body">
                 <div className="Tweet-List">
                 <TweetList tweets = {this.state.tweets}/>

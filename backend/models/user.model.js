@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Tweet = require('./tweet.model');
+const bcrypt = require('bcrypt');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -24,5 +24,32 @@ const userSchema = new Schema({
   timestamps: true,
 });
 
-const User = mongoose.model('User', userSchema);
-module.exports = User;
+userSchema.pre('save', function(next){
+ 
+  if(!this.isModified('password'))
+    return next();
+
+  bcrypy.hash(this.password, 10, (err, hashPass) => {
+    if(err)
+      return next(err);
+    this.password = hashPass;
+    next();
+  });
+
+});
+
+userSchema.methods.comparePassword = function (password, cb){
+  bcrypt.compare(password, this.password, (err, isMatch) => {
+    if(err)
+      return next(err);
+    else{
+      if(!isMatch)
+        return cb(null, isMatch);
+      else
+        return cb(null, this)
+    }
+  });
+}
+
+const Users = mongoose.model('Users', userSchema);
+module.exports = Users;
