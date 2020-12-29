@@ -22,7 +22,7 @@ export class SignUp extends Component {
         if(this.state.username.length < 3) alert("Username too Short!");
         else if(this.state.password.length < 5) alert("Password too Short!");
         else{
-            axios.get('http://192.168.1.235:5000/users/get/'+this.state.username)
+            axios.get('http://localhost:5000/users/get/'+this.state.username)
             .then(response => {
                 if(response.data != null) alert("Username Taken!");
                 else this.addUser();
@@ -38,7 +38,7 @@ export class SignUp extends Component {
             password : this.state.password
         }
         
-        axios.post('http://192.168.1.235:5000/users/add', newUser)
+        axios.post('http://localhost:5000/users/add', newUser)
           .then(response => {
             this.setState({user: response.data },this.verifyUser)
             console.log(this.state.user)

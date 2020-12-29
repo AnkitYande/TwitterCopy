@@ -15,11 +15,14 @@ export class Login extends Component {
 
     onSubmit = (e) =>{
         e.preventDefault();
-        //axios.get('http://192.168.1.235:5000/users/login/'+this.state.username)
+        //axios.get('http://localhost:5000/users/login/'+this.state.username)
         this.getUser();
     }
 
     verifyUser = () => {
+        console.log(this.state.user.password);
+        console.log(this.state.password);
+
         if(this.state.user == null || this.state.user.password!==this.state.password){
             alert("Incorrect Username or Password")
             window.location = '/login';
@@ -31,8 +34,8 @@ export class Login extends Component {
     }
 
     getUser = () => {
-        //console.log('http://192.168.1.235:5000/users/authorize/'+this.state.username);
-        axios.get('http://192.168.1.235:5000/users/get/'+this.state.username)
+        //console.log('http://localhost:5000/users/authorize/'+this.state.username);
+        axios.get('http://localhost:5000/users/get/'+this.state.username)
           .then(response => {
             this.setState({user: response.data },this.verifyUser)
             console.log(this.state.user)

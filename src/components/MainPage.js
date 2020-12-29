@@ -11,7 +11,7 @@ export class MainPage extends Component {
 
     getTweets = () => {
         console.log('Getting Tweets');
-        axios.get('http://192.168.1.235:5000/tweets/')
+        axios.get('http://localhost:5000/tweets/')
             .then(response => {
                 this.setState({tweets: response.data })
             })
@@ -31,6 +31,7 @@ export class MainPage extends Component {
 
     render() {
         return (
+            this.state.tweets.length === 0 ? <div className="App-Body"> Backend is not Connected</div> :
             <div className="App-Body">
                 <div className="Tweet-List">
                     <CreateTweet user = {this.props.user} updateTweets = {this.refresh}/> 

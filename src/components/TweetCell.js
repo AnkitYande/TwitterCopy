@@ -9,7 +9,7 @@ export class TweetCell extends Component {
             username : this.props.user,
             tweetID : this.props.id,
         }
-        axios.put('http://192.168.1.235:5000/users/like', like)
+        axios.put('http://localhost:5000/users/like', like)
             .then(res => console.log(res.data));
     }
 

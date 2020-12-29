@@ -9,7 +9,7 @@ export class Profile extends Component {
     };
 
     getTweets = () => {
-        axios.get('http://192.168.1.235:5000/tweets/get/'+this.props.user)
+        axios.get('http://localhost:5000/tweets/get/'+this.props.user)
             .then(response => {
                 this.setState({tweets: response.data })
             })
