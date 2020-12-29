@@ -31,13 +31,21 @@ export class MainPage extends Component {
 
     render() {
         return (
-            this.state.tweets.length === 0 ? <div className="App-Body"> Backend is not Connected</div> :
-            <div className="App-Body">
-                <div className="Tweet-List">
-                    <CreateTweet user = {this.props.user} updateTweets = {this.refresh}/> 
-                    <TweetList tweets = {this.state.tweets} user = {this.props.user}/>
+            this.state.tweets.length === 0 ? (
+                <div className="App-Body">
+                    <div className="Tweet-List">
+                        <CreateTweet user = {this.props.user} updateTweets = {this.refresh}/> 
+                        <h1>Backend Not Connected</h1>
+                    </div>
                 </div>
-            </div>
+            ) : (
+                <div className="App-Body">
+                    <div className="Tweet-List">
+                        <CreateTweet user = {this.props.user} updateTweets = {this.refresh}/> 
+                        <TweetList tweets = {this.state.tweets} user = {this.props.user}/>
+                    </div>
+                </div>
+            )
         )
     }
 }
