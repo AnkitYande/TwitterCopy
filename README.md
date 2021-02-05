@@ -1,4 +1,5 @@
 ## MERN Stack Twitter Copy
+a full stack twitter clone that allows users to create profiles, make tweets, and like other’s tweets which are stored in a mongoDB database and diplayed in a react application. Accuonts are authenticated with JWT tokens.
 
 To run type the following in the project directory: 
 ### `npm start`
