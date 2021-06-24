@@ -64,7 +64,7 @@ export class Liked extends Component {
 
     render() {
         return (
-            this.state.tweets.length === 0 ?
+            !this.props.user ?
                 <div className="App-Body"> You haven’t liked any Tweets yet</div>
                 :
                 <div className="App-Body">
