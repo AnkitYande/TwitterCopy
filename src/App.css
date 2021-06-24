@@ -122,3 +122,7 @@ body{
 .sidenav a:hover {
     color: #1ea1f2;
 }
+
+.like-btn :hover{
+    color: rgb(224, 36, 94);
+}

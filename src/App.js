@@ -35,7 +35,7 @@ class App extends Component {
               render={(props) => (<MainPage user={this.state.user} />
               )} />
             <Route path="/profile" exact
-              render={(props) => (<Profile user={this.state.user} />
+              render={(props) => (<Profile user={this.state.user} updateUser={this.updateUser}/>
               )} />
             <Route path="/liked" exact
               render={(props) => (<Liked user={this.state.user} />

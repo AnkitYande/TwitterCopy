@@ -15,38 +15,31 @@ export class Login extends Component {
 
     onSubmit = (e) =>{
         e.preventDefault();
-        //axios.get('http://localhost:5000/users/login/'+this.state.username)
-        this.getUser();
+        // axios.get('http://localhost:5000/users/login/'+this.state.username)
+        this.verifyUser();
     }
 
     verifyUser = () => {
-        console.log(this.state.user.password);
-        console.log(this.state.password);
-
-        if(this.state.user == null || this.state.user.password!==this.state.password){
-            alert("Incorrect Username or Password")
-            window.location = '/login';
-        }else{
-            this.props.updateUser(this.state.user.username)
-            setTimeout(5000)
-            this.setState({valid: true})
+        const pkg = {
+            "username" : this.state.username,
+            "password" : this.state.password,
         }
+        console.log(pkg);
+        axios.post('http://localhost:5000/users/verify', pkg)
+            .then(res => {
+                if(typeof(res.data) == "string")
+                    alert(res.data);
+                else{
+                    this.setState({user: res.data});
+                    this.props.updateUser(this.state.username);
+                    this.setState({valid: true})
+                }
+            }
+        );
     }
 
-    getUser = () => {
-        //console.log('http://localhost:5000/users/authorize/'+this.state.username);
-        axios.get('http://localhost:5000/users/get/'+this.state.username)
-          .then(response => {
-            this.setState({user: response.data },this.verifyUser)
-            console.log(this.state.user)
-          })
-          .catch((error) => {
-            console.log(error);
-          })
-      };
-
     render() {
-        if (this.state.valid) {
+        if (this.state.user) {
             this.setState({valid: false})
             return <Redirect to={'/'} />
         }

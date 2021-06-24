@@ -22,14 +22,14 @@ connection.once('open', () => {
 const tweetsRouter = require('./routes/tweets');
 const usersRouter = require('./routes/users');
 
-const userRouter = require('./routes/User');
-app.use('/user',userRouter);
+// const userRouter = require('./routes/User');
+// app.use('/user',userRouter);
 
 app.use('/tweets', tweetsRouter);
 app.use('/users', usersRouter);
 
 app.use(cookieParser())
-userRouter.use(cookieParser())
+// userRouter.use(cookieParser())
 app.use(express.json());
 
 app.get('/getcookie', function(req, res) {

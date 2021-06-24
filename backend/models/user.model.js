@@ -29,7 +29,7 @@ userSchema.pre('save', function(next){
   if(!this.isModified('password'))
     return next();
 
-  bcrypy.hash(this.password, 10, (err, hashPass) => {
+  bcrypt.hash(this.password, 10, (err, hashPass) => {
     if(err)
       return next(err);
     this.password = hashPass;

@@ -27,13 +27,27 @@ export class Profile extends Component {
         this.getTweets();
     }
 
+    logout = () => {
+        console.log("logging out");
+        axios.get('http://localhost:5000/users/logout');
+        this.props.updateUser(null);
+    }
+
     render() {
         return (
             <div className="App-Body">
-                <div className="Tweet-List">
-                <CreateTweet user = {this.props.user} updateTweets = {this.refresh}/> 
-                <TweetList tweets = {this.state.tweets}/>
-                </div>
+                {this.props.user ? (
+                    <div>
+                    <h2>Welcome {this.props.user}!</h2>
+                    <h3 style={{ cursor: "pointer", textDecoration: "underline"}} onClick={this.logout}>Sign Out</h3>
+                    <div className="Tweet-List">
+                    <CreateTweet user = {this.props.user} updateTweets = {this.refresh}/> 
+                    <TweetList tweets = {this.state.tweets}/>
+                    </div>
+                    </div>
+                ):(                 
+                    <div>Logged Out</div>
+                )}
             </div>
         )
     }

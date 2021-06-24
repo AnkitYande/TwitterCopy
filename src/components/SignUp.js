@@ -35,7 +35,8 @@ export class SignUp extends Component {
     addUser = () => {
         const newUser = {
             username : this.state.username,
-            password : this.state.password
+            password : this.state.password,
+            role: 'user'
         }
         
         axios.post('http://localhost:5000/users/add', newUser)
