@@ -26,10 +26,16 @@ export class Navbar extends Component {
 
                 <Link to="/Liked">
                     <FontAwesomeIcon style={{ cursor: "pointer", fontSize: "1.5rem", marginRight: 10 }} icon={faHeart} onClick={this.likeTweet} />
-                    Liked
+                    Likes
                 </Link>
                 {/* <Link to="/Following">Following</Link> */}
                 {/* <Link to="/Search">Search</Link> */}
+                {/* <Link to="/Modal"> */}
+                <a onClick={() => {this.props.toggleOpen()}}>
+                    <button className="btn" style={{ margin: 0 }}>Tweet</button>
+                </a>
+                {/* </Link> */}
+
             </div>
         )
     }

@@ -10,11 +10,13 @@ import Profile from './components/Profile';
 import Liked from './components/Liked';
 import Following from './components/Following';
 import Search from './components/Search';
+import Modal from './components/Modal';
 
 class App extends Component {
 
   state = {
     user: null,
+    open: false,
   };
 
   updateUser = (uid) => {
@@ -22,23 +24,38 @@ class App extends Component {
     console.log("Logged in as: " + uid);
   }
 
+  toggleOpen = () => {
+    this.setState({ open: true })
+  }
+
   render() {
     return (
       <Router>
         <div className="App">
           <br></br>
-          <div style={{ "fontWeight": "bold", "fontSize": "calc(10px + 3vmin)" }} > TwitterClone </div>
+          <div className="App-Body" style={{ fontSize: "1.75em", fontWeight: "bold" }}> TwitterClone </div>
+
+            <Modal
+              open={this.state.open}
+              onClose={ () => {this.setState({ open: false})}}
+              user={this.state.user}
+            >
+              Popup
+            </Modal>
+           
           <div className="container">
-            <Navbar user={this.state.user} />
+
+            <Navbar toggleOpen={this.toggleOpen} user={this.state.user} />
+
 
             <Route path="/" exact
-              render={(props) => (<MainPage user={this.state.user} updateUser={this.updateUser}/>
+              render={(props) => (<MainPage user={this.state.user} updateUser={this.updateUser} />
               )} />
             <Route path="/profile" exact
-              render={(props) => (<Profile user={this.state.user} updateUser={this.updateUser}/>
+              render={(props) => (<Profile user={this.state.user} updateUser={this.updateUser} />
               )} />
             <Route path="/liked" exact
-              render={(props) => (<Liked user={this.state.user} updateUser={this.updateUser}/>
+              render={(props) => (<Liked user={this.state.user} updateUser={this.updateUser} />
               )} />
             <Route path="/following" exact
               render={(props) => (<Following user={this.state.user} />
@@ -52,8 +69,11 @@ class App extends Component {
             <Route path='/SignUp'
               render={(props) => (<SignUp updateUser={this.updateUser} />)}
             />
+            {/* <Route path='/Modal'
+              render={(props) => (<Modal updateUser={this.updateUser} />)}
+            /> */}
           </div>
-          
+
         </div>
       </Router>
     );

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import TweetList from './TweetList';
-import CreateTweet from './CreateTweet';
 import axios from 'axios';
 
 export class Profile extends Component {
     state = {
-        tweets:[]
+        tweets:[],
+        numLikes: 0
     };
 
     getTweets = async () => {
@@ -18,8 +18,19 @@ export class Profile extends Component {
             })
     };
 
+    getUser = async () => {
+        await axios.get('http://localhost:5000/users/get/'+this.props.user)
+            .then(response => {
+                this.setState({numLikes: response.data.likedTweets.length })
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    };
+
     componentDidMount() {
         this.getTweets();
+        this.getUser();
     }
 
     refresh = () =>{
@@ -38,12 +49,15 @@ export class Profile extends Component {
             <div className="App-Body">
                 {this.props.user ? (
                     <div>
-                    <h2>Welcome {this.props.user}!</h2>
-                    <h3 style={{ cursor: "pointer", textDecoration: "underline"}} onClick={this.logout}>Sign Out</h3>
-                    <div className="Tweet-List">
-                    <CreateTweet user = {this.props.user} updateTweets = {this.refresh}/> 
-                    <TweetList tweets = {this.state.tweets}/>
-                    </div>
+                        <div className="Tweet-List">
+                            <div className="bio">
+                                <h1>@{this.props.user}</h1>
+                                <h4 style={{ opacity: '0.7'}}> Tweets: {this.state.tweets.length} </h4>
+                                <h4 style={{ opacity: '0.7'}}> Likes: {this.state.numLikes} </h4>
+                                <button className="btn" style={{ margin: 0}} onClick={this.logout}>Sign Out</button>
+                            </div>
+                            <TweetList tweets = {this.state.tweets}/>
+                        </div>
                     </div>
                 ):(                 
                     <div>Logged Out</div>

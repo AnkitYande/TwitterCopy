@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
-import { Redirect, Link } from "react-router-dom";
 
 export class TweetCell extends Component {
 
