@@ -42,16 +42,19 @@ export class TweetList extends Component {
     render() {
 
         return this.props.tweets.slice(0).reverse().map((tweet) => (
-            <TweetCell
-                username={tweet.username}
-                message={tweet.message}
-                id={tweet._id}
-                date={tweet.updatedAt}
-                user={this.props.user}
-                liked={this.getLiked(tweet._id)}
-                updateUser={this.props.updateUser}
-                updateTweets={this.updateTweets}
-            />
+            tweet ?
+                <TweetCell
+                    username={tweet.username}
+                    message={tweet.message}
+                    id={tweet._id}
+                    date={tweet.updatedAt}
+                    user={this.props.user}
+                    liked={this.getLiked(tweet._id)}
+                    updateUser={this.props.updateUser}
+                    updateTweets={this.updateTweets}
+                />
+                :
+                <></>
         ));
 
     }

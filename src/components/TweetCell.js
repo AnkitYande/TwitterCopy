@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
 
 export class TweetCell extends Component {
@@ -30,6 +30,16 @@ export class TweetCell extends Component {
             // .then(res => console.log(res.data));
         }
 
+        this.update();
+
+    }
+
+    deleteTweet = async () => {
+        await axios.delete('http://localhost:5000/tweets/' + this.props.id)
+        this.update();
+    }
+
+    update = () => {
         // this.props.updateUser(this.props.user);
         this.props.updateTweets();
         this.forceUpdate();
@@ -38,7 +48,14 @@ export class TweetCell extends Component {
     render() {
         return (
             <div className="tweet-cell">
-                <p><b>{this.props.username}</b> {this.props.date.substring(0, 10)} </p>
+                <div className="tweet-cell-flex">
+                    <p><b>{this.props.username}</b> {this.props.date.substring(0, 10)} </p>
+                    {this.props.username === this.props.user ?
+                        <FontAwesomeIcon className="like-btn" style={{ cursor: "pointer", fontSize: "1rem", marginRight: 10 }} icon={faTrash} onClick={this.deleteTweet} />
+                        :
+                        <></>
+                    }
+                </div>
                 <p>{this.props.message}</p>
                 {!this.props.liked ?
                     <FontAwesomeIcon className="like-btn" style={{ cursor: "pointer", fontSize: "1rem", marginRight: 10 }} icon={faHeart} onClick={this.likeTweet} />

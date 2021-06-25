@@ -61,6 +61,12 @@ body {
     text-align: left;
 }
 
+.tweet-cell-flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .tweet-cell:hover {
     background-color: #192734
 }
