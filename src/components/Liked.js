@@ -3,63 +3,40 @@ import TweetList from './TweetList';
 import axios from 'axios';
 
 export class Liked extends Component {
+
+
     state = {
+        tweet_ID_List: [],
         tweets: []
     };
 
-    getTweets = async () => {
-        console.log('Getting Tweets');
-        await axios.get('http://localhost:5000/tweets/')
+    getTweetIDs = () => {
+        axios.get('http://localhost:5000/users/get/' + this.props.user)
             .then(response => {
-                this.setState({ tweets: response.data })
+                this.setState({ tweet_ID_List: response.data.likedTweets }, this.getTweets)
             })
             .catch((error) => {
                 console.log(error);
             })
     };
 
-    componentDidMount() {
-        this.getTweets();
+    getTweets = () => {
+        this.state.tweet_ID_List.forEach(tweet => {
+            console.log("Searching For: " + tweet)
+            axios.get('http://localhost:5000/tweets/' + tweet)
+                .then(response => {
+                    this.setState({ tweets: [...this.state.tweets, response.data] })
+                })
+                .catch((error) => {
+                    console.log(error);
+                    return
+                })
+        });
     }
 
-
-    // state = {
-    //     tweet_ID_List: [],
-    //     tweets: []
-    // };
-
-    // getTweets = () => {
-    //     axios.get('http://localhost:5000/users/get/' + this.props.user)
-    //         .then(response => {
-    //             this.setState({ tweet_ID_List: response.data.likedTweets }, this.getMessages)
-    //         })
-    //         .catch((error) => {
-    //             console.log(error);
-    //         })
-    // };
-
-    // getMessages = () => {
-    //     this.state.tweet_ID_List.forEach(tweet => {
-    //         console.log("Searching For: " + tweet)
-    //         axios.get('http://localhost:5000/tweets/' + tweet)
-    //             .then(response => {
-    //                 this.setState({ tweets: [...this.state.tweets, response.data] })
-    //             })
-    //             .catch((error) => {
-    //                 console.log(error);
-    //                 return
-    //             })
-    //     });
-    // }
-
-    // componentDidMount() {
-    //     this.getTweets();
-    // }
-
-    // refresh = () => {
-    //     this.getTweets();
-    //     this.getTweets();
-    // }
+    componentDidMount() {
+        this.getTweetIDs();
+    }
 
     render() {
         return (
@@ -67,14 +44,13 @@ export class Liked extends Component {
             <div className="App-Body">
                 {!this.props.user ?
                     <div> You haven’t liked any Tweets yet</div>
-                :
+                    :
                     <div className="Tweet-List">
                         <TweetList
                             tweets={this.state.tweets}
                             user={this.props.user}
-                            updateTweets={this.getTweets}
+                            updateTweets={this.getTweetIDs}
                             updateUser={this.props.updateUser}
-                            onlyLike={true}
                         />
                     </div>}
             </div>

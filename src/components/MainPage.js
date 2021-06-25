@@ -24,11 +24,6 @@ export class MainPage extends Component {
         this.getTweets();
     }
 
-    // refresh = () =>{
-    //     this.getTweets();
-    //     this.getTweets();
-    // }
-
     render() {
         return (
             <div className="App-Body">
@@ -42,7 +37,6 @@ export class MainPage extends Component {
                             user={this.props.user}
                             updateTweets={this.getTweets}
                             updateUser={this.props.updateUser}
-                            onlyLike={false}
                         />
                     )}
                 </div>

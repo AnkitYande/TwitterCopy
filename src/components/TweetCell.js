@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export class TweetCell extends Component {
 
-    likeTweet = async() => {
+    likeTweet = async () => {
         if (!this.props.user) {
             alert("You must login to like tweets");
             return;
@@ -18,7 +18,7 @@ export class TweetCell extends Component {
                 tweetID: this.props.id,
             }
             await axios.put('http://localhost:5000/users/like', like)
-                // .then(res => console.log(res.data));
+            // .then(res => console.log(res.data));
         } else {
             console.log(this.props.user + " unliked " + this.props.id)
             const like = {
@@ -27,7 +27,7 @@ export class TweetCell extends Component {
             }
             console.log(like)
             await axios.put('http://localhost:5000/users/unlike', like)
-                // .then(res => console.log(res.data));
+            // .then(res => console.log(res.data));
         }
 
         // this.props.updateUser(this.props.user);

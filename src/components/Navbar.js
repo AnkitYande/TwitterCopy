@@ -30,11 +30,10 @@ export class Navbar extends Component {
                 </Link>
                 {/* <Link to="/Following">Following</Link> */}
                 {/* <Link to="/Search">Search</Link> */}
-                {/* <Link to="/Modal"> */}
+                
                 <a onClick={() => {this.props.toggleOpen()}}>
                     <button className="btn" style={{ margin: 0 }}>Tweet</button>
                 </a>
-                {/* </Link> */}
 
             </div>
         )

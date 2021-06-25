@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import axios from 'axios' 
+import axios from 'axios'
 import TweetCell from './TweetCell'
 
 export class TweetList extends Component {
@@ -13,20 +13,20 @@ export class TweetList extends Component {
     }
 
     getTweets = async () => {
-        
-        if(!this.props.user) return;
+
+        if (!this.props.user) return;
 
         // console.log('http://localhost:5000/users/get/'+this.props.user);
-        await axios.get('http://localhost:5000/users/get/'+this.props.user)
+        await axios.get('http://localhost:5000/users/get/' + this.props.user)
             .then(res => {
-                this.setState({likedTweets : res.data.likedTweets})
+                this.setState({ likedTweets: res.data.likedTweets })
             })
         return true;
     }
 
     getLiked = (id) => {
-        if(this.state.likedTweets)
-            if (this.state.likedTweets.includes(id)){
+        if (this.state.likedTweets)
+            if (this.state.likedTweets.includes(id)) {
                 return true;
             }
         return false;
@@ -41,19 +41,16 @@ export class TweetList extends Component {
 
     render() {
 
-        return this.props.tweets.slice(0).reverse().map((tweet) => ( 
-            (this.props.onlyLike && !this.getLiked(tweet._id)) ? 
-            <div></div>
-            :
-            <TweetCell 
-                username = { tweet.username }
-                message = { tweet.message }
-                id = { tweet._id }
-                date = { tweet.updatedAt }
-                user = { this.props.user }
-                liked = { this.getLiked(tweet._id) }
-                updateUser = {this.props.updateUser}
-                updateTweets ={this.updateTweets}
+        return this.props.tweets.slice(0).reverse().map((tweet) => (
+            <TweetCell
+                username={tweet.username}
+                message={tweet.message}
+                id={tweet._id}
+                date={tweet.updatedAt}
+                user={this.props.user}
+                liked={this.getLiked(tweet._id)}
+                updateUser={this.props.updateUser}
+                updateTweets={this.updateTweets}
             />
         ));
 
