@@ -6,7 +6,7 @@ To run type the following in the project directory:
 and the following in the backend directory:
 ### `nodemon server`
 
-Frontend viewable at: https://ankityande.github.io/TwitterCopy/ (backend not connected)
+Frontend viewable at: https://ankityande.github.io/TwitterCopy/ (backend not connected, can be used if backend server is running locally on localhost:5000)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
