@@ -9,12 +9,16 @@ export class TweetList extends Component {
     }
 
     componentDidMount() {
+        this.getTweets();
+    }
+
+    getTweets = async () => {
+        
         if(!this.props.user) return;
 
-        console.log('http://localhost:5000/users/get/'+this.props.user);
-        axios.get('http://localhost:5000/users/get/'+this.props.user)
+        // console.log('http://localhost:5000/users/get/'+this.props.user);
+        await axios.get('http://localhost:5000/users/get/'+this.props.user)
             .then(res => {
-                console.log( "here", res.data.likedTweets);
                 this.setState({likedTweets : res.data.likedTweets})
             })
         return true;
@@ -23,10 +27,16 @@ export class TweetList extends Component {
     getLiked = (id) => {
         if(this.state.likedTweets)
             if (this.state.likedTweets.includes(id)){
-                console.log("Matches!!")
                 return true;
             }
         return false;
+    }
+
+    updateTweets = async () => {
+        this.props.updateUser(this.props.user)
+        this.props.updateTweets();
+        console.log("updating tweets")
+        this.getTweets();
     }
 
     render() {
@@ -42,6 +52,8 @@ export class TweetList extends Component {
                 date = { tweet.updatedAt }
                 user = { this.props.user }
                 liked = { this.getLiked(tweet._id) }
+                updateUser = {this.props.updateUser}
+                updateTweets ={this.updateTweets}
             />
         ));
 

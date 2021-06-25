@@ -9,7 +9,7 @@ export class CreateTweet extends Component {
 
     onChange = (e) => this.setState({tweet: e.target.value});
     
-    onSubmit = (e) =>{
+    onSubmit = async (e) =>{
         e.preventDefault();
         if( this.props.user == null)
             alert("You Must Log In")
@@ -19,7 +19,7 @@ export class CreateTweet extends Component {
                 username : this.props.user,
                 message : this.state.tweet
             }
-            axios.post('http://localhost:5000/tweets/add', newTweet)
+            await axios.post('http://localhost:5000/tweets/add', newTweet)
                 .then(res => console.log(res.data));
             
             this.setState({tweet: ''});

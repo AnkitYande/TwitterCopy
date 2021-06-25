@@ -8,9 +8,9 @@ export class Liked extends Component {
         tweets:[]
     };
 
-    getTweets = () => {
+    getTweets = async () => {
         console.log('Getting Tweets');
-        axios.get('http://localhost:5000/tweets/')
+        await axios.get('http://localhost:5000/tweets/')
             .then(response => {
                 this.setState({tweets: response.data })
             })
@@ -69,8 +69,14 @@ export class Liked extends Component {
                 :
                 <div className="App-Body">
                     <div className="Tweet-List">
-                        <CreateTweet user={this.props.user} updateTweets={this.getTweets} />
-                        <TweetList tweets={this.state.tweets} user={this.props.user} onlyLike = {true}/>
+                    <CreateTweet user = {this.props.user} updateTweets = {this.getTweets}/> 
+                        <TweetList 
+                            tweets = {this.state.tweets} 
+                            user = {this.props.user} 
+                            updateTweets = {this.getTweets}
+                            updateUser = {this.props.updateUser}
+                            onlyLike = {true}
+                        />
                     </div>
                 </div>
         )

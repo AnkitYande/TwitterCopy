@@ -8,8 +8,8 @@ export class Profile extends Component {
         tweets:[]
     };
 
-    getTweets = () => {
-        axios.get('http://localhost:5000/tweets/get/'+this.props.user)
+    getTweets = async () => {
+        await axios.get('http://localhost:5000/tweets/get/'+this.props.user)
             .then(response => {
                 this.setState({tweets: response.data })
             })
