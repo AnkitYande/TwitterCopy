@@ -18,8 +18,8 @@ class App extends Component {
   };
 
   updateUser = (uid) => {
-    console.log("Logged in as: " + uid);
     this.setState({ user: uid });
+    console.log("Logged in as: " + uid);
   }
 
   render() {
@@ -32,13 +32,13 @@ class App extends Component {
             <Navbar user={this.state.user} />
 
             <Route path="/" exact
-              render={(props) => (<MainPage user={this.state.user} />
+              render={(props) => (<MainPage user={this.state.user} updateUser={this.updateUser}/>
               )} />
             <Route path="/profile" exact
               render={(props) => (<Profile user={this.state.user} updateUser={this.updateUser}/>
               )} />
             <Route path="/liked" exact
-              render={(props) => (<Liked user={this.state.user} />
+              render={(props) => (<Liked user={this.state.user} updateUser={this.updateUser}/>
               )} />
             <Route path="/following" exact
               render={(props) => (<Following user={this.state.user} />

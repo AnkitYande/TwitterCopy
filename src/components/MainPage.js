@@ -4,16 +4,16 @@ import CreateTweet from './CreateTweet';
 import axios from 'axios';
 
 export class MainPage extends Component {
-    
+
     state = {
-        tweets:[]
+        tweets: []
     };
 
-    getTweets = () => {
+    getTweets = async () => {
         console.log('Getting Tweets');
-        axios.get('http://localhost:5000/tweets/')
+        await axios.get('http://localhost:5000/tweets/')
             .then(response => {
-                this.setState({tweets: response.data })
+                this.setState({ tweets: response.data })
             })
             .catch((error) => {
                 console.log(error);
@@ -24,28 +24,29 @@ export class MainPage extends Component {
         this.getTweets();
     }
 
-    refresh = () =>{
-        this.getTweets();
-        this.getTweets();
-    }
+    // refresh = () =>{
+    //     this.getTweets();
+    //     this.getTweets();
+    // }
 
     render() {
         return (
-            this.state.tweets.length === 0 ? (
-                <div className="App-Body">
-                    <div className="Tweet-List">
-                        <CreateTweet user = {this.props.user} updateTweets = {this.getTweets}/> 
+            <div className="App-Body">
+                <div className="Tweet-List">
+                    <CreateTweet user={this.props.user} updateTweets={this.getTweets} />
+                    {this.state.tweets.length === 0 ? (
                         <h1>Loading Tweets...</h1>
-                    </div>
+                    ) : (
+                        <TweetList
+                            tweets={this.state.tweets}
+                            user={this.props.user}
+                            updateTweets={this.getTweets}
+                            updateUser={this.props.updateUser}
+                            onlyLike={false}
+                        />
+                    )}
                 </div>
-            ) : (
-                <div className="App-Body">
-                    <div className="Tweet-List">
-                        <CreateTweet user = {this.props.user} updateTweets = {this.getTweets}/> 
-                        <TweetList tweets = {this.state.tweets} user = {this.props.user} onlyLike = {false}/>
-                    </div>
-                </div>
-            )
+            </div>
         )
     }
 }

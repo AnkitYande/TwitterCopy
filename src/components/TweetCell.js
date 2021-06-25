@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
+import { Redirect, Link } from "react-router-dom";
 
 export class TweetCell extends Component {
 
-    likeTweet = () => {
+    likeTweet = async() => {
         if (!this.props.user) {
             alert("You must login to like tweets");
             return;
@@ -17,8 +18,8 @@ export class TweetCell extends Component {
                 username: this.props.user,
                 tweetID: this.props.id,
             }
-            axios.put('http://localhost:5000/users/like', like)
-                .then(res => console.log(res.data));
+            await axios.put('http://localhost:5000/users/like', like)
+                // .then(res => console.log(res.data));
         } else {
             console.log(this.props.user + " unliked " + this.props.id)
             const like = {
@@ -26,9 +27,13 @@ export class TweetCell extends Component {
                 tweetID: this.props.id,
             }
             console.log(like)
-            axios.put('http://localhost:5000/users/unlike', like)
-                .then(res => console.log(res.data));
+            await axios.put('http://localhost:5000/users/unlike', like)
+                // .then(res => console.log(res.data));
         }
+
+        // this.props.updateUser(this.props.user);
+        this.props.updateTweets();
+        this.forceUpdate();
     }
 
     render() {
@@ -36,7 +41,6 @@ export class TweetCell extends Component {
             <div className="tweet-cell">
                 <p><b>{this.props.username}</b> {this.props.date.substring(0, 10)} </p>
                 <p>{this.props.message}</p>
-                {/* <button type="button" onClick={this.likeTweet}>Like</button> */}
                 {!this.props.liked ?
                     <FontAwesomeIcon className="like-btn" style={{ cursor: "pointer", fontSize: "1rem", marginRight: 10 }} icon={faHeart} onClick={this.likeTweet} />
                     :

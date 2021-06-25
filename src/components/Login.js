@@ -19,13 +19,13 @@ export class Login extends Component {
         this.verifyUser();
     }
 
-    verifyUser = () => {
+    verifyUser = async () => {
         const pkg = {
             "username" : this.state.username,
             "password" : this.state.password,
         }
         console.log(pkg);
-        axios.post('http://localhost:5000/users/verify', pkg)
+        await axios.post('http://localhost:5000/users/verify', pkg)
             .then(res => {
                 if(typeof(res.data) == "string")
                     alert(res.data);

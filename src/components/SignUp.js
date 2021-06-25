@@ -18,11 +18,11 @@ export class SignUp extends Component {
         this.checkUser();
     }
 
-    checkUser = () => {
+    checkUser = async () => {
         if(this.state.username.length < 3) alert("Username too Short!");
         else if(this.state.password.length < 5) alert("Password too Short!");
         else{
-            axios.get('http://localhost:5000/users/get/'+this.state.username)
+            await axios.get('http://localhost:5000/users/get/'+this.state.username)
             .then(response => {
                 if(response.data != null) alert("Username Taken!");
                 else this.addUser();
@@ -32,14 +32,14 @@ export class SignUp extends Component {
             })
         }
     }
-    addUser = () => {
+    addUser = async () => {
         const newUser = {
             username : this.state.username,
             password : this.state.password,
             role: 'user'
         }
         
-        axios.post('http://localhost:5000/users/add', newUser)
+        await axios.post('http://localhost:5000/users/add', newUser)
           .then(response => {
             this.setState({user: response.data },this.verifyUser)
             console.log(this.state.user)
