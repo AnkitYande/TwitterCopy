@@ -5,7 +5,7 @@ if (process.env.NODE_ENV !== 'production') {
 const express = require('express')
 const mongoose = require('mongoose');
 const app = express()
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 10000;
 const bcrypt = require('bcrypt')
 const passport = require('passport')
 const flash = require('express-flash')

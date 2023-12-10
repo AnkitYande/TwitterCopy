@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { HashRouter as Router, Route } from "react-router-dom";
 
 import './App.css';
 import Navbar from './components/Navbar';
@@ -30,52 +30,55 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <div className="App">
-          <br></br>
-          <div className="App-Body" style={{ fontSize: "1.75em", fontWeight: "bold" }}> TwitterClone </div>
+      <HashRouter>
+        <Router>
+          <div className="App">
+            <br></br>
+            <div className="App-Body" style={{ fontSize: "1.75em", fontWeight: "bold" }}> TwitterClone </div>
 
             <Modal
               open={this.state.open}
-              onClose={ () => {this.setState({ open: false})}}
+              onClose={() => { this.setState({ open: false }) }}
               user={this.state.user}
             >
               Popup
             </Modal>
-           
-          <div className="container">
 
-            <Navbar toggleOpen={this.toggleOpen} user={this.state.user} />
+            <div className="container">
+
+              <Navbar toggleOpen={this.toggleOpen} user={this.state.user} />
 
 
-            <Route path="/" exact
-              render={(props) => (<MainPage user={this.state.user} updateUser={this.updateUser} />
-              )} />
-            <Route path="/profile" exact
-              render={(props) => (<Profile user={this.state.user} updateUser={this.updateUser} />
-              )} />
-            <Route path="/liked" exact
-              render={(props) => (<Liked user={this.state.user} updateUser={this.updateUser} />
-              )} />
-            <Route path="/following" exact
-              render={(props) => (<Following user={this.state.user} />
-              )} />
-            <Route path="/search" exact
-              render={(props) => (<Search user={this.state.user} />
-              )} />
-            <Route path="/login"
-              render={(props) => (<Login updateUser={this.updateUser} />)}
-            />
-            <Route path='/SignUp'
-              render={(props) => (<SignUp updateUser={this.updateUser} />)}
-            />
-            {/* <Route path='/Modal'
+              <Route path="/" exact
+                render={(props) => (<MainPage user={this.state.user} updateUser={this.updateUser} />
+                )} />
+              <Route path="/profile" exact
+                render={(props) => (<Profile user={this.state.user} updateUser={this.updateUser} />
+                )} />
+              <Route path="/liked" exact
+                render={(props) => (<Liked user={this.state.user} updateUser={this.updateUser} />
+                )} />
+              <Route path="/following" exact
+                render={(props) => (<Following user={this.state.user} />
+                )} />
+              <Route path="/search" exact
+                render={(props) => (<Search user={this.state.user} />
+                )} />
+              <Route path="/login"
+                render={(props) => (<Login updateUser={this.updateUser} />)}
+              />
+              <Route path='/SignUp'
+                render={(props) => (<SignUp updateUser={this.updateUser} />)}
+              />
+              {/* <Route path='/Modal'
               render={(props) => (<Modal updateUser={this.updateUser} />)}
             /> */}
-          </div>
+            </div>
 
-        </div>
-      </Router>
+          </div>
+        </Router>
+      </HashRouter>
+
     );
   }
 

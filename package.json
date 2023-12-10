@@ -1,5 +1,5 @@
 {
-  "homepage": "http://AnkitYande.github.io/TwitterCopy",
+  "homepage": "http://AnkitYande.github.io/TwitterCopy/#",
   "name": "twitter",
   "version": "0.1.0",
   "private": true,
@@ -21,7 +21,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^6.3.0",
     "passport": "^0.4.1",
-    "passport-jwt": "^4.0.0",
+    "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
     "prop-types": "^15.7.2",
     "props-type": "^1.0.1",

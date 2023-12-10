@@ -11,7 +11,7 @@ export class MainPage extends Component {
 
     getTweets = async () => {
         console.log('Getting Tweets');
-        await axios.get('http://localhost:5001/tweets/')
+        await axios.get('/tweets/')
             .then(response => {
                 this.setState({ tweets: response.data })
             })

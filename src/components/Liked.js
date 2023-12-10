@@ -11,7 +11,7 @@ export class Liked extends Component {
     };
 
     getTweetIDs = () => {
-        axios.get('http://localhost:5001/users/get/' + this.props.user)
+        axios.get('/users/get/' + this.props.user)
             .then(response => {
                 this.setState({ tweet_ID_List: response.data.likedTweets }, this.getTweets)
             })
@@ -23,7 +23,7 @@ export class Liked extends Component {
     getTweets = () => {
         this.state.tweet_ID_List.forEach(tweet => {
             console.log("Searching For: " + tweet)
-            axios.get('http://localhost:5001/tweets/' + tweet)
+            axios.get('/tweets/' + tweet)
                 .then(response => {
                     this.setState({ tweets: [...this.state.tweets, response.data] })
                 })
