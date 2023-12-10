@@ -9,7 +9,7 @@ export class Profile extends Component {
     };
 
     getTweets = async () => {
-        await axios.get('http://localhost:5000/tweets/get/' + this.props.user)
+        await axios.get('http://localhost:5001/tweets/get/' + this.props.user)
             .then(response => {
                 this.setState({ tweets: response.data })
             })
@@ -19,7 +19,7 @@ export class Profile extends Component {
     };
 
     getUser = async () => {
-        await axios.get('http://localhost:5000/users/get/' + this.props.user)
+        await axios.get('http://localhost:5001/users/get/' + this.props.user)
             .then(response => {
                 this.setState({ numLikes: response.data.likedTweets.length })
             })
@@ -40,7 +40,7 @@ export class Profile extends Component {
 
     logout = () => {
         console.log("logging out");
-        axios.get('http://localhost:5000/users/logout');
+        axios.get('http://localhost:5001/users/logout');
         this.props.updateUser(null);
     }
 

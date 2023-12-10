@@ -17,7 +17,7 @@ export class TweetCell extends Component {
                 username: this.props.user,
                 tweetID: this.props.id,
             }
-            await axios.put('http://localhost:5000/users/like', like)
+            await axios.put('http://localhost:5001/users/like', like)
             // .then(res => console.log(res.data));
         } else {
             console.log(this.props.user + " unliked " + this.props.id)
@@ -26,7 +26,7 @@ export class TweetCell extends Component {
                 tweetID: this.props.id,
             }
             console.log(like)
-            await axios.put('http://localhost:5000/users/unlike', like)
+            await axios.put('http://localhost:5001/users/unlike', like)
             // .then(res => console.log(res.data));
         }
 
@@ -35,7 +35,7 @@ export class TweetCell extends Component {
     }
 
     deleteTweet = async () => {
-        await axios.delete('http://localhost:5000/tweets/' + this.props.id)
+        await axios.delete('http://localhost:5001/tweets/' + this.props.id)
         this.update();
     }
 

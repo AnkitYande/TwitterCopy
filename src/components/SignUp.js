@@ -22,7 +22,7 @@ export class SignUp extends Component {
         if(this.state.username.length < 3) alert("Username too Short!");
         else if(this.state.password.length < 5) alert("Password too Short!");
         else{
-            await axios.get('http://localhost:5000/users/get/'+this.state.username)
+            await axios.get('http://localhost:5001/users/get/'+this.state.username)
             .then(response => {
                 if(response.data != null) alert("Username Taken!");
                 else this.addUser();
@@ -39,7 +39,7 @@ export class SignUp extends Component {
             role: 'user'
         }
         
-        await axios.post('http://localhost:5000/users/add', newUser)
+        await axios.post('http://localhost:5001/users/add', newUser)
           .then(response => {
             this.setState({user: response.data },this.verifyUser)
             console.log(this.state.user)
@@ -48,7 +48,7 @@ export class SignUp extends Component {
             console.log(error);
           })
           this.props.updateUser(this.state.username);
-          setTimeout(5000);
+          setTimeout(5001);
           this.setState({valid: true})
       };
 

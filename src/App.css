@@ -23,6 +23,10 @@ body {
     margin-bottom: 15px
 }
 
+.close-btn *:hover {
+    color:#1884c7;
+}
+
 .container {
     display: flex;
     flex-direction: row;
@@ -73,11 +77,13 @@ body {
 
 .btn {
     background: #1ea1f2;
-    font-size: calc(10px + 1vmin);
+    font-size: 24px;
     color: #ffffff;
     border-radius: 50px;
     margin: 10px 10px;
-    width: 100px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: auto;
     height: 50px;
     border: none;
     outline: none;
@@ -127,6 +133,10 @@ body {
     position: fixed;
 }
 
+a {
+    color: #ddd;
+}
+
 .sidenav a {
     padding: 50px 12px 12px 20px;
     text-decoration: none;
@@ -136,10 +146,11 @@ body {
     display: block;
 }
 
-.sidenav a:hover {
+a:hover {
     color: #1ea1f2;
 }
 
 .like-btn :hover {
     color: rgb(224, 36, 94);
 }
+

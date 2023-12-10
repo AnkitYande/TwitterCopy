@@ -15,7 +15,7 @@ export class Login extends Component {
 
     onSubmit = (e) =>{
         e.preventDefault();
-        // axios.get('http://localhost:5000/users/login/'+this.state.username)
+        // axios.get('http://localhost:5001/users/login/'+this.state.username)
         this.verifyUser();
     }
 
@@ -25,7 +25,7 @@ export class Login extends Component {
             "password" : this.state.password,
         }
         console.log(pkg);
-        await axios.post('http://localhost:5000/users/verify', pkg)
+        await axios.post('http://localhost:5001/users/verify', pkg)
             .then(res => {
                 if(typeof(res.data) == "string")
                     alert(res.data);

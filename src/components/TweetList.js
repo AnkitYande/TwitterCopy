@@ -16,8 +16,8 @@ export class TweetList extends Component {
 
         if (!this.props.user) return;
 
-        // console.log('http://localhost:5000/users/get/'+this.props.user);
-        await axios.get('http://localhost:5000/users/get/' + this.props.user)
+        // console.log('http://localhost:5001/users/get/'+this.props.user);
+        await axios.get('http://localhost:5001/users/get/' + this.props.user)
             .then(res => {
                 this.setState({ likedTweets: res.data.likedTweets })
             })
